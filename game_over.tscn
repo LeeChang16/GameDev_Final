@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgyhyn2vmyvil"]
+
+[ext_resource type="Texture2D" uid="uid://bebet4yogvo5k" path="res://world_bground/back.png" id="1_u10jn"]
+[ext_resource type="Texture2D" uid="uid://xkuc0xgy21gb" path="res://Assets/game_over.png" id="2_ekl75"]
+[ext_resource type="Script" path="res://play.gd" id="3_14n1j"]
+[ext_resource type="Script" path="res://quit.gd" id="4_lyygi"]
+
+[node name="Game_Over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 656.0
+texture = ExtResource("1_u10jn")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 117.0
+offset_top = -21.0
+offset_right = 1007.0
+offset_bottom = 572.0
+texture = ExtResource("2_ekl75")
+
+[node name="play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 401.0
+offset_right = 633.0
+offset_bottom = 448.0
+text = "PLAY AGAIN
+"
+script = ExtResource("3_14n1j")
+
+[node name="quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 478.0
+offset_right = 633.0
+offset_bottom = 524.0
+text = "QUIT
+"
+script = ExtResource("4_lyygi")

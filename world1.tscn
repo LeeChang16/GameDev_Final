@@ -1947,7 +1947,7 @@ position = Vector2(1953, 502)
 position = Vector2(3442, 333)
 
 [node name="adventurer" parent="StaticBody2D" instance=ExtResource("6_2yqbh")]
-position = Vector2(47, 307)
+position = Vector2(31, 236)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="StaticBody2D/adventurer"]
 remote_path = NodePath("../../Camera2D")
@@ -2133,7 +2133,7 @@ position = Vector2(5154, 437)
 scale = Vector2(0.999995, 0.999998)
 
 [node name="Camera2D" type="Camera2D" parent="StaticBody2D"]
-position = Vector2(47, 307)
+position = Vector2(31, 236)
 limit_left = 0
 limit_top = 0
 limit_right = 5184

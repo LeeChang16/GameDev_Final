@@ -63,6 +63,8 @@ var damage: int = PLAYER_DAMAGE_AMOUNT
 @onready var anim= get_node("CollisionShape2D/AnimatedSprite2D")
 func _ready():	
 	
+	
+	
 	hit = get_node("CollisionShape2D/AnimatedSprite2D/hit")
 	air_hit = get_node("CollisionShape2D/AnimatedSprite2D/air_hit")
 	jump_audio = get_node("CollisionShape2D/AnimatedSprite2D/jump")
@@ -95,6 +97,10 @@ func _process(delta):
 	
 		if Input.is_action_just_pressed("attack"):
 			attack()
+		
+		if position.y >900:
+			is_alive = false
+			
 		
 	
 		if Input.is_action_just_pressed("ui_accept"):
@@ -137,6 +143,7 @@ func _process(delta):
 		if not die_locked:
 			anim.play("die")
 			die_locked = true
+			#get_tree().change_scene_to_file("res://game_over.tscn")
 	
 	
 	
@@ -290,6 +297,11 @@ func _on_animated_sprite_2d_animation_finished():
 	if(anim.animation=="jump_land"):
 		animation_locked=false
 		print("jump_land")
+	
+	if(anim.animation == "die_fall"):
+		get_tree().change_scene_to_file("res://game_over.tscn")
+	if(anim.animation == "die"):
+		get_tree().change_scene_to_file("res://game_over.tscn")
 		
 	#To handle the attack animations
 	if(anim.animation=="run_punch"):

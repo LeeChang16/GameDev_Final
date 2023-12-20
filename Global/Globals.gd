@@ -43,3 +43,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func reset_variables():
+	collected = 0
+	currentShard = collected
+
+	currentHealth = maxHealth
+
+	slime1_currentHealth = slime1_maxHealth
+	slime2_currentHealth = slime2_maxHealth
+	slime3_currentHealth = slime3_maxHealth
+	slime4_currentHealth = slime4_maxHealth

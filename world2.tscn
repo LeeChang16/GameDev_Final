@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cfipyuc5ww2vf"]
+[gd_scene load_steps=25 format=3 uid="uid://cfipyuc5ww2vf"]
 
 [ext_resource type="Texture2D" uid="uid://c8j21sj3imfor" path="res://world_bground/bg2.webp" id="1_0ei65"]
 [ext_resource type="Texture2D" uid="uid://c3r2vimpx7c62" path="res://world_bground/bg6.webp" id="2_k4jqr"]
@@ -11,6 +11,10 @@
 [ext_resource type="Script" path="res://HealthBar.gd" id="8_jyces"]
 [ext_resource type="Texture2D" uid="uid://dq3odbnmbn8fw" path="res://Assets/greenshard-progress.png" id="9_mlo66"]
 [ext_resource type="Script" path="res://ShardBar.gd" id="11_dvugq"]
+[ext_resource type="PackedScene" uid="uid://dbk6pi2f065xw" path="res://slime.tscn" id="12_gk3r7"]
+[ext_resource type="PackedScene" uid="uid://bs66gprvhoc40" path="res://eagle.tscn" id="13_o1hcm"]
+[ext_resource type="PackedScene" uid="uid://fh4rmh44n0g8" path="res://chest.tscn" id="14_hwi7l"]
+[ext_resource type="PackedScene" uid="uid://cemggw6xnf5ep" path="res://frog.tscn" id="15_5vd82"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqbmb"]
 size = Vector2(236.75, 166)
@@ -105,7 +109,7 @@ position = Vector2(4266.11, 323.25)
 shape = SubResource("RectangleShape2D_4gl57")
 
 [node name="adventurer" parent="StaticBody2D" instance=ExtResource("4_syi2s")]
-position = Vector2(66, 444)
+position = Vector2(36, 271)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="StaticBody2D/adventurer"]
 remote_path = NodePath("../../Camera2D")
@@ -155,8 +159,35 @@ script = ExtResource("11_dvugq")
 player = NodePath("../../adventurer")
 
 [node name="Camera2D" type="Camera2D" parent="StaticBody2D"]
-position = Vector2(66, 444)
+position = Vector2(36, 271)
 limit_left = 0
 limit_top = 0
 limit_right = 4192
 limit_bottom = 640
+
+[node name="slime5" parent="StaticBody2D" instance=ExtResource("12_gk3r7")]
+position = Vector2(952, 329)
+
+[node name="slime6" parent="StaticBody2D" instance=ExtResource("12_gk3r7")]
+position = Vector2(1499, 331)
+
+[node name="slime7" parent="StaticBody2D" instance=ExtResource("12_gk3r7")]
+position = Vector2(2908, 462)
+
+[node name="hawk4" parent="StaticBody2D" instance=ExtResource("13_o1hcm")]
+position = Vector2(1901, 254)
+
+[node name="hawk5" parent="StaticBody2D" instance=ExtResource("13_o1hcm")]
+position = Vector2(3844, 339)
+
+[node name="chest3" parent="StaticBody2D" instance=ExtResource("14_hwi7l")]
+position = Vector2(1130, 332)
+
+[node name="chest4" parent="StaticBody2D" instance=ExtResource("14_hwi7l")]
+position = Vector2(2316, 334)
+
+[node name="frog3" parent="StaticBody2D" instance=ExtResource("15_5vd82")]
+position = Vector2(668, 459)
+
+[node name="frog4" parent="StaticBody2D" instance=ExtResource("15_5vd82")]
+position = Vector2(2252, 460)
