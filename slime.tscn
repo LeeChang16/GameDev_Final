@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dbk6pi2f065xw"]
+[gd_scene load_steps=28 format=3 uid="uid://dbk6pi2f065xw"]
 
 [ext_resource type="Script" path="res://slime.gd" id="1_bjxvw"]
 [ext_resource type="Texture2D" uid="uid://gqlj4g8ynmn2" path="res://sprites/Slime/Slime Attack/slime-attack-0.png" id="1_xx11p"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://d0wg103pnk0a3" path="res://sprites/Slime/Slime Move/slime-move-1.png" id="19_37qsf"]
 [ext_resource type="Texture2D" uid="uid://cjmhtqdmavvsj" path="res://sprites/Slime/Slime Move/slime-move-2.png" id="20_fu1le"]
 [ext_resource type="Texture2D" uid="uid://jwkv421vjvii" path="res://sprites/Slime/Slime Move/slime-move-3.png" id="21_apxax"]
+[ext_resource type="AudioStream" uid="uid://b08hcno1dwbg7" path="res://Music/death/sfx_deathscream_alien2.wav" id="23_qihp5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xncx6"]
 animations = [{
@@ -144,6 +145,9 @@ shape = SubResource("CircleShape2D_ngm6n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ybmoe")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_qihp5")
 
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]

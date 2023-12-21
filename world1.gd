@@ -5,7 +5,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	$StaticBody2D/AudioStreamPlayer2D.play()
+	$StaticBody2D/AudioStreamPlayer.play()
 	pass # Replace with function body.
 
 

@@ -20,6 +20,7 @@ var req5 = false
 var req6 = false
 
 func _ready():
+	$StaticBody2D/AudioStreamPlayer
 	shard1.hide()
 	shard2.hide()
 	shard3.hide()

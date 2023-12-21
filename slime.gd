@@ -19,6 +19,8 @@ var has_died = false
 var can_attack = false
 var has_attacked
 
+@onready var death = $AudioStreamPlayer2D
+	
 func _process(delta):
 
 	if Globals.slime1_currentHealth <= 0:
@@ -58,6 +60,7 @@ func _process(delta):
 		if not has_died:
 			get_node("AnimatedSprite2D").play("slime_die")
 			await get_node("AnimatedSprite2D").animation_finished
+			#death.play()
 			self.queue_free()
 			has_died = true
 		#else:
