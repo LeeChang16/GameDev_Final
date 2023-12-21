@@ -130,7 +130,7 @@ script = ExtResource("1_bjxvw")
 position = Vector2(2, -11)
 scale = Vector2(1.25, 1.82)
 sprite_frames = SubResource("SpriteFrames_xncx6")
-animation = &"slime_die"
+animation = &"slime_attack"
 
 [node name="attack_area" type="Area2D" parent="."]
 

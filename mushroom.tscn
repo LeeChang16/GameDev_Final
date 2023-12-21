@@ -1,13 +1,14 @@
-[gd_scene load_steps=28 format=3 uid="uid://cs8lyb8masuqd"]
+[gd_scene load_steps=34 format=3 uid="uid://cs8lyb8masuqd"]
 
 [ext_resource type="Script" path="res://mushroom.gd" id="1_olhs6"]
 [ext_resource type="Texture2D" uid="uid://blcm74stht4vk" path="res://sprites/Mushroom/Attack.png" id="2_gq2se"]
 [ext_resource type="Texture2D" uid="uid://behyfd4t6k0c6" path="res://sprites/Mushroom/Idle.png" id="2_v8ogi"]
+[ext_resource type="Texture2D" uid="uid://cap67s6xdw2jd" path="res://sprites/Mushroom/Death.png" id="3_4yu8q"]
 [ext_resource type="Texture2D" uid="uid://xjq2urswgbvw" path="res://sprites/Mushroom/Run.png" id="4_qefea"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfh0k"]
-radius = 27.0
-height = 86.0
+radius = 7.0
+height = 56.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ymvcm"]
 atlas = ExtResource("2_gq2se")
@@ -40,6 +41,22 @@ region = Rect2(900, 0, 150, 150)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjl30"]
 atlas = ExtResource("2_gq2se")
 region = Rect2(1050, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0koyj"]
+atlas = ExtResource("3_4yu8q")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxmxy"]
+atlas = ExtResource("3_4yu8q")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fecqt"]
+atlas = ExtResource("3_4yu8q")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a64xi"]
+atlas = ExtResource("3_4yu8q")
+region = Rect2(450, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_et6kt"]
 atlas = ExtResource("2_v8ogi")
@@ -122,6 +139,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0koyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxmxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fecqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a64xi")
+}],
+"loop": true,
+"name": &"mushroom_die",
+"speed": 2.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"mushroom_hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_et6kt")
 }, {
 "duration": 1.0,
@@ -167,9 +206,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u3g75"]
-radius = 50.0
-height = 110.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cannw"]
+radius = 144.0
+height = 288.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_43eay"]
+radius = 41.0
+height = 82.0
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_olhs6")
@@ -188,7 +231,15 @@ animation = &"mushroom_attack"
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_u3g75")
+shape = SubResource("CapsuleShape2D_cannw")
+
+[node name="attack_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_43eay")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]

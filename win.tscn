@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf2w8os7ivmas"]
+
+[ext_resource type="Texture2D" uid="uid://bebet4yogvo5k" path="res://world_bground/back.png" id="1_gv5df"]
+[ext_resource type="Texture2D" uid="uid://5x0g8jltxcd8" path="res://Assets/win.png" id="2_rjn6c"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 642.0
+texture = ExtResource("1_gv5df")
+
+[node name="You_win" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 48.0
+offset_right = 966.0
+offset_bottom = 457.0
+texture = ExtResource("2_rjn6c")
+
+[node name="Main menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 373.0
+offset_right = 643.0
+offset_bottom = 410.0
+text = "Main Menu
+"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 428.0
+offset_right = 643.0
+offset_bottom = 465.0
+text = "Quit
+"

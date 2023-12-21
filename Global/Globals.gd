@@ -59,6 +59,16 @@ var test = 10
 @export var hawk5_maxHealth = 20
 @onready var hawk5_currentHealth: int = hawk5_maxHealth
 
+
+#Mushsroom
+@export var mushroom1_maxHealth = 50
+@onready var mushroom1_currentHealth: int = mushroom1_maxHealth
+
+@export var mushroom2_maxHealth = 50
+@onready var mushroom2_currentHealth: int = mushroom2_maxHealth
+
+@export var mushroom3_maxHealth = 50
+@onready var mushroom3_currentHealth: int = mushroom3_maxHealth
 #=======
 #>>>>>>> 58ead0fd782866083d8dda00362f781baf85dfc6
 # Called when the node enters the scene tree for the first time.
@@ -91,3 +101,8 @@ func reset_variables():
 	hawk3_currentHealth = hawk3_maxHealth
 	hawk4_currentHealth = hawk4_maxHealth
 	hawk5_currentHealth = hawk5_maxHealth
+	
+	#Mushroom
+	mushroom1_currentHealth = mushroom1_maxHealth
+	mushroom2_currentHealth = mushroom2_maxHealth
+	mushroom3_currentHealth = mushroom3_maxHealth

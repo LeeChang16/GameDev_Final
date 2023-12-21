@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7c2t7sshjhjb"]
+
+[ext_resource type="Texture2D" uid="uid://ldkvy3d85vx" path="res://Assets/menu.png" id="1_wd2ge"]
+[ext_resource type="Theme" uid="uid://bh6q2c88ikor6" path="res://default.tres" id="2_qnb7p"]
+[ext_resource type="Script" path="res://Button.gd" id="3_xw58p"]
+[ext_resource type="Script" path="res://Button2.gd" id="4_rvwd6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3dwg1"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1143.0
+offset_bottom = 643.0
+texture = ExtResource("1_wd2ge")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_3dwg1")
+offset_left = 476.0
+offset_top = 299.0
+offset_right = 650.0
+offset_bottom = 348.0
+theme = ExtResource("2_qnb7p")
+text = "Let's Play"
+script = ExtResource("3_xw58p")
+
+[node name="Button2" type="Button" parent="."]
+material = SubResource("CanvasItemMaterial_3dwg1")
+offset_left = 473.0
+offset_top = 387.0
+offset_right = 647.0
+offset_bottom = 436.0
+theme = ExtResource("2_qnb7p")
+text = "Quit"
+script = ExtResource("4_rvwd6")

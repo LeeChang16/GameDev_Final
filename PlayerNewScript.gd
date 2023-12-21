@@ -73,6 +73,13 @@ var hawk5
 var hawk5_enemy = false
 
 
+var mushroom1
+var mushroom1_enemy = false
+var mushroom2
+var mushroom2_enemy = false
+var mushroom3
+var mushroom3_enemy = false
+
 
 var slime7_died = false
 var slime6_died = false
@@ -107,6 +114,10 @@ func _ready():
 	hawk3 = get_node("/root/Node2D/StaticBody2D/Hawk3")
 	hawk4 = get_node("/root/Node2D/StaticBody2D/Hawk4")
 	hawk5 = get_node("/root/Node2D/StaticBody2D/Hawk5")
+	
+	mushroom1 = get_node("/root/Node2D/StaticBody2D/mushroom1")
+	mushroom2 = get_node("/root/Node2D/StaticBody2D/mushroom2")
+	mushroom3 = get_node("/root/Node2D/StaticBody2D/mushroom3")
 	
 	if animation_play and is_alive:
 		anim.play('idle')
@@ -196,6 +207,18 @@ func _process(delta):
 			if hawk5_enemy and not hawk5_died:
 				hawk5.enemy_take_damage(damage)
 				has_attacked = false
+				
+			if mushroom1_enemy:
+				mushroom1.enemy_take_damage(damage)
+				has_attacked = false
+			if mushroom2_enemy:
+				mushroom2.enemy_take_damage(damage)
+				has_attacked = false
+			if mushroom3_enemy:
+				mushroom3.enemy_take_damage(damage)
+				has_attacked = false
+				
+			
 				
 		else:
 			has_attacked=false
@@ -417,7 +440,16 @@ func _on_attack_range_body_entered(body):
 		enemy_inside = true
 		hawk5_enemy = true
 		
-		
+	if body.name == "mushroom":
+		enemy_inside = true
+		mushroom1_enemy = true
+	if body.name == "mushroom2":
+		enemy_inside = true
+		mushroom2_enemy = true
+	if body.name == "mushroom3":
+		enemy_inside = true
+		mushroom3_enemy = true
+
 func _on_attack_range_body_exited(body):
 	if body.name == "slime1":
 		enemy_inside = false
@@ -456,6 +488,16 @@ func _on_attack_range_body_exited(body):
 	if body.name == "Hawk5":
 		enemy_inside = false
 		hawk5_enemy = false
+		
+	if body.name == "mushroom":
+		enemy_inside = false
+		mushroom1_enemy = false
+	if body.name == "mushroom2":
+		enemy_inside = false
+		mushroom2_enemy = false
+	if body.name == "mushroom3":
+		enemy_inside = false
+		mushroom3_enemy = false
 
 	
 	
