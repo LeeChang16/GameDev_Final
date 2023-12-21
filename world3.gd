@@ -26,7 +26,7 @@ func _ready():
 	shard4.hide()
 	shard5.hide()
 	shard6.hide()
-	
+
 	portal.hide()
 
 func _process(delta):
@@ -83,5 +83,6 @@ func _on_s_6_body_entered(body):
 
 func _on_area_2d_body_entered(body):
 	if body.name == "adventurer":
-		get_tree().change_scene_to_file("res://win.tscn")
+		if req1 and req2 and req3 and req4 and req5 and req6:
+			get_tree().change_scene_to_file("res://win.tscn")
 	

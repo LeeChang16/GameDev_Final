@@ -80,6 +80,11 @@ var mushroom2_enemy = false
 var mushroom3
 var mushroom3_enemy = false
 
+var skeleton1
+var skeleton1_enemy = false
+var skeleton2
+var skeleton2_enemy = false
+
 
 var slime7_died = false
 var slime6_died = false
@@ -115,9 +120,12 @@ func _ready():
 	hawk4 = get_node("/root/Node2D/StaticBody2D/Hawk4")
 	hawk5 = get_node("/root/Node2D/StaticBody2D/Hawk5")
 	
-	mushroom1 = get_node("/root/Node2D/StaticBody2D/mushroom1")
+	mushroom1 = get_node("/root/Node2D/StaticBody2D/mushroom")
 	mushroom2 = get_node("/root/Node2D/StaticBody2D/mushroom2")
 	mushroom3 = get_node("/root/Node2D/StaticBody2D/mushroom3")
+	
+	skeleton1 = get_node("/root/Node2D/StaticBody2D/skeleton")
+	skeleton2 = get_node("/root/Node2D/StaticBody2D/skeleton2")
 	
 	if animation_play and is_alive:
 		anim.play('idle')
@@ -210,14 +218,25 @@ func _process(delta):
 				
 			if mushroom1_enemy:
 				mushroom1.enemy_take_damage(damage)
+				print("kanahan ka")
 				has_attacked = false
 			if mushroom2_enemy:
 				mushroom2.enemy_take_damage(damage)
+				print("lol")
 				has_attacked = false
 			if mushroom3_enemy:
 				mushroom3.enemy_take_damage(damage)
+				print("haysss")
 				has_attacked = false
-				
+
+			if skeleton1_enemy:
+				skeleton1.enemy_take_damage(damage)
+				print("haysss")
+				has_attacked = false
+			if skeleton2_enemy:
+				skeleton2.enemy_take_damage(damage)
+				print("haysss")
+				has_attacked = false
 			
 				
 		else:
@@ -449,6 +468,13 @@ func _on_attack_range_body_entered(body):
 	if body.name == "mushroom3":
 		enemy_inside = true
 		mushroom3_enemy = true
+		
+	if body.name == "skeleton":
+		enemy_inside = true
+		skeleton1_enemy = true
+	if body.name == "skeleton2":
+		enemy_inside = true
+		skeleton2_enemy = true
 
 func _on_attack_range_body_exited(body):
 	if body.name == "slime1":
@@ -498,6 +524,13 @@ func _on_attack_range_body_exited(body):
 	if body.name == "mushroom3":
 		enemy_inside = false
 		mushroom3_enemy = false
+	
+	if body.name == "skeleton":
+		enemy_inside = false
+		skeleton1_enemy = false
+	if body.name == "skeleton2":
+		enemy_inside = false
+		skeleton2_enemy = false
 
 	
 	

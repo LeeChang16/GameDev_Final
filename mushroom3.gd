@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 class_name mushroom3 
 
@@ -9,7 +9,7 @@ var gravity = 500
 var speed = 200
 var direction = Vector2.ZERO  # Initially set to zero for idle state
 
-@onready var animation = get_node("CharacterBody2D/CollisionShape2D/AnimatedSprite2D")
+@onready var animation = get_node("CollisionShape2D/AnimatedSprite2D")
 
 const MUSHROOM_DAMAGE_AMOUNT = 10
 var damage: int = MUSHROOM_DAMAGE_AMOUNT
@@ -55,8 +55,8 @@ func _process(delta):
 			animation.scale.x = abs(animation.scale.x)
 	else:
 		if not has_died:
-			get_node("AnimatedSprite2D").play("mushroom_die")
-			await get_node("AnimatedSprite2D").animation_finished
+			get_node("CollisionShape2D/AnimatedSprite2D").play("mushroom_die")
+			await get_node("CollisionShape2D/AnimatedSprite2D").animation_finished
 			self.queue_free()
 			has_died = true
 		#else:
@@ -77,7 +77,7 @@ func _on_attack_area_body_entered(body):
 	if body.name == "adventurer":
 	#	can_attack = true
 		#animation.play("slime_attack")
-		get_node("CharacterBody2D/CollisionShape2D/AnimatedSprite2D").play("mushroom_attack")
+		get_node("CollisionShape2D/AnimatedSprite2D").play("mushroom_attack")
 		#await get_node("AnimatedSprite2D").animation_finished
 		body.take_damage(damage)
 		#await get_tree().create_timer(1.0).timeout
