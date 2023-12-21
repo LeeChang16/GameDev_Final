@@ -47,15 +47,40 @@ var enemy_inside = false
 
 var slime1
 var enemy1 = false
-
 var slime2
 var enemy2 = false
-
 var slime3
 var enemy3 = false
-
 var slime4
 var enemy4 = false
+var slime5
+var enemy5 = false
+var slime6
+var enemy6 = false
+var slime7
+var enemy7 = false
+
+
+var hawk1
+var hawk1_enemy = false
+var hawk2
+var hawk2_enemy = false
+var hawk3
+var hawk3_enemy = false
+var hawk4
+var hawk4_enemy = false
+var hawk5
+var hawk5_enemy = false
+
+
+
+var slime7_died = false
+var slime6_died = false
+var hawk1_died = false
+var hawk2_died = false
+var hawk3_died = false
+var hawk4_died = false
+var hawk5_died = false
 
 const PLAYER_DAMAGE_AMOUNT = 20
 var damage: int = PLAYER_DAMAGE_AMOUNT
@@ -73,6 +98,15 @@ func _ready():
 	slime2 = get_node("/root/Node2D/StaticBody2D/slime2")
 	slime3 = get_node("/root/Node2D/StaticBody2D/slime3") 
 	slime4 = get_node("/root/Node2D/StaticBody2D/slime4")
+	slime5 = get_node("/root/Node2D/StaticBody2D/slime5")
+	slime6 = get_node("/root/Node2D/StaticBody2D/slime6")
+	slime7 = get_node("/root/Node2D/StaticBody2D/slime7")
+	
+	hawk1 = get_node("/root/Node2D/StaticBody2D/Hawk1")
+	hawk2 = get_node("/root/Node2D/StaticBody2D/Hawk2")
+	hawk3 = get_node("/root/Node2D/StaticBody2D/Hawk3")
+	hawk4 = get_node("/root/Node2D/StaticBody2D/Hawk4")
+	hawk5 = get_node("/root/Node2D/StaticBody2D/Hawk5")
 	
 	if animation_play and is_alive:
 		anim.play('idle')
@@ -136,6 +170,33 @@ func _process(delta):
 			if enemy4:
 				slime4.enemy_take_damage(damage)
 				has_attacked = false
+			if enemy5:
+				slime5.enemy_take_damage(damage)
+				has_attacked = false
+			if enemy6 and not slime6_died:
+				slime6.enemy_take_damage(damage)
+				has_attacked = false
+			if enemy7 and not slime7_died:
+				slime7.enemy_take_damage(damage)
+				has_attacked = false				
+								
+								
+			if hawk1_enemy and not hawk1_died:
+				hawk1.enemy_take_damage(damage)
+				has_attacked = false
+			if hawk2_enemy and not hawk2_died:
+				hawk2.enemy_take_damage(damage)
+				has_attacked = false
+			if hawk3_enemy and not hawk3_died:
+				hawk3.enemy_take_damage(damage)
+				has_attacked = false
+			if hawk4_enemy and not hawk4_died:
+				hawk4.enemy_take_damage(damage)
+				has_attacked = false
+			if hawk5_enemy and not hawk5_died:
+				hawk5.enemy_take_damage(damage)
+				has_attacked = false
+				
 		else:
 			has_attacked=false
 		
@@ -196,7 +257,7 @@ func jump():
 func double_jump():
 	anim.play("jump_double")
 	jump_audio.play()
-	velocity.y = JUMP_VELOCITY*0.6
+	velocity.y = JUMP_VELOCITY*0.7
 	has_double_jump=true
 	animation_locked=true
 	
@@ -217,8 +278,7 @@ func attack():
 	# Check if the character is on the ground
 	if is_on_floor():
 		# Play attack animation
-		animation_play = false
-		
+		animation_play = false	
 		anim.play("attack_1")
 		has_attacked = true
 		hit.play()
@@ -228,13 +288,15 @@ func attack():
 		# For simplicity, let's assume dealing damage to an enemy (you should replace this logic)
 		
 	else:
-		
+		has_attacked = true
 		animation_play = false
-		anim.play("air_attack_1")
+		get_node("CollisionShape2D/AnimatedSprite2D").play("air_attack_1")
+		await get_node("CollisionShape2D/AnimatedSprite2D").animation_finished
+		has_attacked = false
 		air_hit.play()
+		
 		print("Air Attack")
 
-		deal_damage_to_enemy()
 
 
 
@@ -303,6 +365,8 @@ func _on_animated_sprite_2d_animation_finished():
 	if(anim.animation == "die"):
 		get_tree().change_scene_to_file("res://game_over.tscn")
 		
+		
+		
 	#To handle the attack animations
 	if(anim.animation=="run_punch"):
 		animation_play=true
@@ -316,28 +380,82 @@ func _on_attack_range_body_entered(body):
 	if body.name == "slime1":
 		enemy_inside = true
 		enemy1 = true
-	elif body.name == "slime2":
+	if body.name == "slime2":
 		enemy_inside = true
 		enemy2 = true
-	elif body.name == "slime3":
+	if body.name == "slime3":
 		enemy_inside = true
 		enemy3 = true
-	elif body.name == "slime4":
+	if body.name == "slime4":
 		enemy_inside = true
 		enemy4 = true
+	if body.name == "slime5":
+		enemy_inside = true
+		enemy5 = true	
+	if body.name == "slime6":
+		enemy_inside = true
+		enemy6 = true
+	if body.name == "slime7":
+		enemy_inside = true
+		enemy7 = true
+
+
+
+	if body.name == "Hawk1":
+		enemy_inside = true
+		hawk1_enemy = true
+	if body.name == "Hawk2":
+		enemy_inside = true
+		hawk2_enemy = true
+	if body.name == "Hawk3":
+		enemy_inside = true
+		hawk3_enemy = true
+	if body.name == "Hawk4":
+		enemy_inside = true
+		hawk4_enemy = true
+	if body.name == "Hawk5":
+		enemy_inside = true
+		hawk5_enemy = true
+		
 		
 func _on_attack_range_body_exited(body):
 	if body.name == "slime1":
 		enemy_inside = false
-	
-	elif body.name == "slime2":
+		enemy1 = false
+	if body.name == "slime2":
 		enemy_inside = false
+		enemy2 = false
+	if body.name == "slime3":
+		enemy_inside = false
+		enemy3 = false
+	if body.name == "slime4":
+		enemy_inside = false
+		enemy4 = false
+	if body.name == "slime5":
+		enemy_inside = false
+		enemy5 = false	
+	if body.name == "slime6":
+		enemy_inside = false
+		enemy6 = false	
+	if body.name == "slime7":
+		enemy_inside = false
+		enemy7 = false	
 		
-	elif body.name == "slime3":
+	if body.name == "Hawk1":
 		enemy_inside = false
-
-	elif body.name == "slime4":
+		hawk1_enemy = false
+	if body.name == "Hawk2":
 		enemy_inside = false
+		hawk2_enemy = false
+	if body.name == "Hawk3":
+		enemy_inside = false
+		hawk3_enemy = false
+	if body.name == "Hawk4":
+		enemy_inside = false
+		hawk4_enemy = false
+	if body.name == "Hawk5":
+		enemy_inside = false
+		hawk5_enemy = false
 
 	
 	

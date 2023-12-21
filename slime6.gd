@@ -1,8 +1,8 @@
 extends Node2D
 
-class_name slime4
+class_name slime6 
 
-signal slime4_healthChanged
+signal slime6_healthChanged
 
 var speed = 200
 var direction = Vector2.ZERO  # Initially set to zero for idle state
@@ -24,7 +24,8 @@ var has_died = false
 
 func _process(delta):
 	#print(currentHealth)
-	if Globals.slime4_currentHealth <= 0:
+	var adventurer = get_node("/root/Node2D/StaticBody2D/adventurer") 
+	if Globals.slime6_currentHealth <= 0:
 		is_alive = false
 	
 	if is_alive:
@@ -32,7 +33,7 @@ func _process(delta):
 		# Check if the adventurer node is inside the slime's detection area
 		if is_player_inside:
 			# Get a reference to the adventurer node
-			var adventurer = get_node("/root/Node2D/StaticBody2D/adventurer")  # Adjust the path accordingly
+			#var adventurer = get_node("/root/Node2D/StaticBody2D/adventurer")  # Adjust the path accordingly
 			# Move towards the player when inside the follow range
 			direction = adventurer.position - position 
 			direction = direction.normalized()
@@ -61,6 +62,7 @@ func _process(delta):
 			animation.scale.x = abs(animation.scale.x)
 	else:
 		if not has_died:
+			adventurer.slime6_died = true
 			get_node("AnimatedSprite2D").play("slime_die")
 			await get_node("AnimatedSprite2D").animation_finished
 			self.queue_free()
@@ -87,9 +89,9 @@ func _on_attack_area_body_entered(body):
 	# Add logic for playing the attack animation if needed
 	
 func enemy_take_damage(amount: int):
-	Globals.slime4_currentHealth -= amount
-	slime4_healthChanged.emit()
-	print(Globals.slime4_currentHealth)
+	Globals.slime6_currentHealth -= amount
+	slime6_healthChanged.emit()
+	print(Globals.slime6_currentHealth)
 	# Ensure health doesn't go below zero
 	#currentHealth = max(0, currentHealth)
 	
@@ -97,7 +99,7 @@ func enemy_take_damage(amount: int):
 	#emit_signal("healthChanged", currentHealth, maxHealth)
 
 	# Add logic to handle player death if needed
-	if Globals.slime4_currentHealth <= 0:
+	if Globals.slime6_currentHealth <= 0:
 		on_enemy_death()
 		
 func on_enemy_death():

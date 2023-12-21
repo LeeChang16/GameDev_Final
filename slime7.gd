@@ -1,8 +1,8 @@
 extends Node2D
 
-class_name slime4
+class_name slime7
 
-signal slime4_healthChanged
+signal slime7_healthChanged
 
 var speed = 200
 var direction = Vector2.ZERO  # Initially set to zero for idle state
@@ -21,10 +21,13 @@ var damage: int = SLIME_DAMAGE_AMOUNT
 var is_player_inside = false
 var is_alive = true
 var has_died = false
+var can_attack = false
+var has_attacked
 
 func _process(delta):
 	#print(currentHealth)
-	if Globals.slime4_currentHealth <= 0:
+	var adventurer = get_node("/root/Node2D/StaticBody2D/adventurer")
+	if Globals.slime7_currentHealth <= 0:
 		is_alive = false
 	
 	if is_alive:
@@ -32,7 +35,7 @@ func _process(delta):
 		# Check if the adventurer node is inside the slime's detection area
 		if is_player_inside:
 			# Get a reference to the adventurer node
-			var adventurer = get_node("/root/Node2D/StaticBody2D/adventurer")  # Adjust the path accordingly
+			# Adjust the path accordingly
 			# Move towards the player when inside the follow range
 			direction = adventurer.position - position 
 			direction = direction.normalized()
@@ -42,7 +45,7 @@ func _process(delta):
 			animation.play("slime_move")
 
 		# Check if the player is on the ground before updating the slime's position
-			if adventurer.is_on_floor():
+			if adventurer.is_on_floor() and not can_attack:
 				# Move the slime based on the direction
 				var velocity = direction * speed * delta
 				position.x += velocity.x  # Only update the horizontal position
@@ -61,6 +64,7 @@ func _process(delta):
 			animation.scale.x = abs(animation.scale.x)
 	else:
 		if not has_died:
+			adventurer.slime7_died = true
 			get_node("AnimatedSprite2D").play("slime_die")
 			await get_node("AnimatedSprite2D").animation_finished
 			self.queue_free()
@@ -69,37 +73,36 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	if body.name =="adventurer":
 		is_player_inside = true
+		
 
 func _on_area_2d_body_exited(body):
 	if body.name == "adventurer":
 		is_player_inside = false
+		
 
 
 func _on_attack_area_body_entered(body):
-	
-	# Get a reference to the adventurer node
-	#var adventurer = get_node("/root/Node2D/StaticBody2D/adventurer")  # Adjust the path accordingly
 	if body.name == "adventurer":
-	# Call the take_damage function in the adventurer script
+	#	can_attack = true
 		animation.play("slime_attack")
 		body.take_damage(damage)
+		#await get_tree().create_timer(1.0).timeout
+
 		
-	# Add logic for playing the attack animation if needed
 	
 func enemy_take_damage(amount: int):
-	Globals.slime4_currentHealth -= amount
-	slime4_healthChanged.emit()
-	print(Globals.slime4_currentHealth)
-	# Ensure health doesn't go below zero
-	#currentHealth = max(0, currentHealth)
-	
-	# Emit the healthChanged signal with the updated health values
-	#emit_signal("healthChanged", currentHealth, maxHealth)
+	Globals.slime7_currentHealth -= amount
+	slime7_healthChanged.emit()
+	print(Globals.slime7_currentHealth)
 
-	# Add logic to handle player death if needed
-	if Globals.slime4_currentHealth <= 0:
+	if Globals.slime7_currentHealth <= 0:
 		on_enemy_death()
 		
 func on_enemy_death():
-	# For example, reload the scene or show a game over screen
 	pass
+
+
+func _on_attack_area_body_exited(body):
+	if body.name == "adventurer":
+		#can_attack = false
+		pass

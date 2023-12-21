@@ -2,12 +2,14 @@ extends Node2D
 
 class_name slime1 
 
-signal slime_healthChanged
+#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+signal slime_healthChanged
+var gravity = 500
 var speed = 200
 var direction = Vector2.ZERO  # Initially set to zero for idle state
 # var follow_range = 350  # Adjust the range based on your needs
-var gravity = 500  # Adjust the gravity strength based on your needs
+#var gravity = 500  # Adjust the gravity strength based on your needs
 
 #@export var maxHealth = 50
 #@onready var currentHealth: int = maxHealth
@@ -63,7 +65,9 @@ func _process(delta):
 			animation.scale.x = abs(animation.scale.x)
 	else:
 		if not has_died:
-			animation.play("slime_die")
+			get_node("AnimatedSprite2D").play("slime_die")
+			await get_node("AnimatedSprite2D").animation_finished
+			self.queue_free()
 			has_died = true
 		#else:
 		#queue_free()
@@ -84,7 +88,7 @@ func _on_attack_area_body_entered(body):
 	#	can_attack = true
 		animation.play("slime_attack")
 		body.take_damage(damage)
-		await get_tree().create_timer(1.0).timeout
+		#await get_tree().create_timer(1.0).timeout
 
 		
 	

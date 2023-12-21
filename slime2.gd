@@ -61,10 +61,11 @@ func _process(delta):
 			animation.scale.x = abs(animation.scale.x)
 	else:
 		if not has_died:
-			animation.play("slime_die")
+			get_node("AnimatedSprite2D").play("slime_die")
+			await get_node("AnimatedSprite2D").animation_finished
+			self.queue_free()
 			has_died = true
-		#else:
-		#queue_free()
+
 			
 func _on_area_2d_body_entered(body):
 	if body.name =="adventurer":
