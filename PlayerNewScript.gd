@@ -86,6 +86,11 @@ var skeleton2
 var skeleton2_enemy = false
 
 
+var frog1_enemy = false
+var frog2_enemy = false
+var frog3_enemy = false
+var frog4_enemy = false
+
 var slime7_died = false
 var slime6_died = false
 var hawk1_died = false
@@ -126,6 +131,8 @@ func _ready():
 	
 	skeleton1 = get_node("/root/Node2D/StaticBody2D/skeleton")
 	skeleton2 = get_node("/root/Node2D/StaticBody2D/skeleton2")
+	
+	#frog1 = get_node("/root/Node2D/StaticBody2D/Frog1")
 	
 	if animation_play and is_alive:
 		anim.play('idle')
@@ -238,7 +245,23 @@ func _process(delta):
 				print("haysss")
 				has_attacked = false
 			
-				
+			if frog1_enemy:
+				Globals.frog1_is_attacked = true
+				print("haysss")
+				has_attacked = false
+			if frog2_enemy:
+				Globals.frog2_is_attacked = true
+				print("haysss")
+				has_attacked = false
+			if frog3_enemy:
+				Globals.frog3_is_attacked = true
+				print("haysss")
+				has_attacked = false
+			if frog4_enemy:
+				Globals.frog4_is_attacked = true
+				print("haysss")
+				has_attacked = false
+
 		else:
 			has_attacked=false
 		
@@ -376,6 +399,10 @@ func take_damage(amount: int):
 	if Globals.currentHealth == 0:
 		on_player_death()
 
+func add_health(amount: int):
+	Globals.currentHealth += amount
+	print(Globals.currentHealth)
+	healthChanged.emit()
 
 
 # Add any additional logic for player death here
@@ -475,6 +502,19 @@ func _on_attack_range_body_entered(body):
 	if body.name == "skeleton2":
 		enemy_inside = true
 		skeleton2_enemy = true
+		
+	if body.name == "Frog1":
+		enemy_inside = true
+		frog1_enemy = true
+	if body.name == "Frog2":
+		enemy_inside = true
+		frog2_enemy = true
+	if body.name == "Frog3":
+		enemy_inside = true
+		frog3_enemy = true
+	if body.name == "Frog4":
+		enemy_inside = true
+		frog4_enemy = true
 
 func _on_attack_range_body_exited(body):
 	if body.name == "slime1":
@@ -532,5 +572,15 @@ func _on_attack_range_body_exited(body):
 		enemy_inside = false
 		skeleton2_enemy = false
 
-	
-	
+	if body.name == "Frog1":
+		enemy_inside = false
+		frog1_enemy = false
+	if body.name == "Frog2":
+		enemy_inside = false
+		frog2_enemy = false
+	if body.name == "Frog3":
+		enemy_inside = false
+		frog3_enemy = false
+	if body.name == "Frog4":
+		enemy_inside = false
+		frog4_enemy = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cfipyuc5ww2vf"]
+[gd_scene load_steps=44 format=3 uid="uid://cfipyuc5ww2vf"]
 
 [ext_resource type="Texture2D" uid="uid://c8j21sj3imfor" path="res://world_bground/bg2.webp" id="1_0ei65"]
 [ext_resource type="Script" path="res://world2.gd" id="1_ul2ox"]
@@ -22,6 +22,8 @@
 [ext_resource type="Script" path="res://enemyhealthbar6.gd" id="16_ubmgx"]
 [ext_resource type="Script" path="res://slime7.gd" id="17_6mk2e"]
 [ext_resource type="Script" path="res://enemyhealthbar7.gd" id="18_u0tei"]
+[ext_resource type="Script" path="res://frog3.gd" id="18_ybtj4"]
+[ext_resource type="Script" path="res://frog4.gd" id="19_j3f67"]
 [ext_resource type="PackedScene" uid="uid://din2fxw2vatbn" path="res://slime6.tscn" id="20_5gxbr"]
 [ext_resource type="PackedScene" uid="uid://cakw415xn7xmh" path="res://slime7.tscn" id="21_npnoh"]
 [ext_resource type="PackedScene" uid="uid://brw6xhf6cy8lq" path="res://eagle4.tscn" id="23_7jckp"]
@@ -211,11 +213,13 @@ position = Vector2(1130, 332)
 [node name="chest4" parent="StaticBody2D" instance=ExtResource("14_hwi7l")]
 position = Vector2(2316, 334)
 
-[node name="frog3" parent="StaticBody2D" instance=ExtResource("15_5vd82")]
+[node name="Frog3" parent="StaticBody2D" instance=ExtResource("15_5vd82")]
 position = Vector2(668, 459)
+script = ExtResource("18_ybtj4")
 
-[node name="frog4" parent="StaticBody2D" instance=ExtResource("15_5vd82")]
+[node name="Frog4" parent="StaticBody2D" instance=ExtResource("15_5vd82")]
 position = Vector2(2252, 460)
+script = ExtResource("19_j3f67")
 
 [node name="slime6" parent="StaticBody2D" instance=ExtResource("20_5gxbr")]
 position = Vector2(1500, 330)

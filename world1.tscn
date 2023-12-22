@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://tckp5lyto65r"]
+[gd_scene load_steps=55 format=3 uid="uid://tckp5lyto65r"]
 
 [ext_resource type="Texture2D" uid="uid://bebet4yogvo5k" path="res://world_bground/back.png" id="1_w03ba"]
 [ext_resource type="Script" path="res://world1.gd" id="1_wpfy8"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cogcarw8r16a4" path="res://Assets/bar-progress.png" id="13_30bwk"]
 [ext_resource type="Script" path="res://enemyhealthbar2.gd" id="13_k81w6"]
 [ext_resource type="Script" path="res://slime3.gd" id="14_u8bnu"]
+[ext_resource type="Script" path="res://frog2.gd" id="15_ajjkd"]
 [ext_resource type="Texture2D" uid="uid://bpy2edtecil5o" path="res://Assets/Pixel1_Healthbar_0001_pixel1_healthbar.png" id="15_b3jcq"]
 [ext_resource type="Script" path="res://HealthBar.gd" id="15_i1lun"]
 [ext_resource type="PackedScene" uid="uid://bs66gprvhoc40" path="res://eagle.tscn" id="15_kp3qo"]
@@ -2019,6 +2020,7 @@ position = Vector2(2782, 327)
 
 [node name="Frog2" parent="StaticBody2D" instance=ExtResource("7_4t0xu")]
 position = Vector2(5078, 503)
+script = ExtResource("15_ajjkd")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StaticBody2D"]
 stream = ExtResource("11_xcmfs")

@@ -1,10 +1,55 @@
-[gd_scene load_steps=9 format=3 uid="uid://cemggw6xnf5ep"]
+[gd_scene load_steps=21 format=3 uid="uid://cemggw6xnf5ep"]
 
 [ext_resource type="Script" path="res://frog.gd" id="1_nk6w7"]
 [ext_resource type="Texture2D" uid="uid://o8bob4c4cc1a" path="res://sprites/Enemy_other/frog-jump.png" id="1_trttr"]
+[ext_resource type="Texture2D" uid="uid://qgnjtk24epun" path="res://sprites/Enemy_other/cherry.png" id="2_vc405"]
+[ext_resource type="Texture2D" uid="uid://b28vf2x2kmept" path="res://sprites/Enemy_other/item-feedback.png" id="3_yurvh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h6dr1"]
+radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s2wwl"]
 radius = 7.07107
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_817bb"]
+atlas = ExtResource("2_vc405")
+region = Rect2(0, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueqbs"]
+atlas = ExtResource("2_vc405")
+region = Rect2(21, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11o40"]
+atlas = ExtResource("2_vc405")
+region = Rect2(42, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2jjt"]
+atlas = ExtResource("2_vc405")
+region = Rect2(63, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yar3d"]
+atlas = ExtResource("2_vc405")
+region = Rect2(84, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udgds"]
+atlas = ExtResource("3_yurvh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crgi8"]
+atlas = ExtResource("3_yurvh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh30j"]
+atlas = ExtResource("3_yurvh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tyss"]
+atlas = ExtResource("3_yurvh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqdx6"]
+atlas = ExtResource("3_yurvh")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7nb17"]
 atlas = ExtResource("1_trttr")
@@ -22,6 +67,55 @@ region = Rect2(70, 0, 35, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_817bb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueqbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11o40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2jjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yar3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2jjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11o40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueqbs")
+}],
+"loop": true,
+"name": &"cherry",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udgds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crgi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh30j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tyss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqdx6")
+}],
+"loop": true,
+"name": &"die",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7nb17")
 }, {
 "duration": 1.0,
@@ -35,22 +129,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_h6dr1"]
-radius = 10.0499
-
-[node name="Node2D" type="Node2D"]
+[node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_nk6w7")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CircleShape2D_s2wwl")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/CollisionShape2D"]
-sprite_frames = SubResource("SpriteFrames_sq6kc")
-animation = &"frog_jump"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_h6dr1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s2wwl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+sprite_frames = SubResource("SpriteFrames_sq6kc")
+animation = &"die"
+frame = 4
+frame_progress = 1.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

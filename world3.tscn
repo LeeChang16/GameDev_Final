@@ -1181,13 +1181,15 @@ position = Vector2(-0.000976563, -36.688)
 shape = SubResource("CapsuleShape2D_0ev2u")
 
 [node name="skeleton" parent="StaticBody2D" instance=ExtResource("7_4c8uh")]
-position = Vector2(2169, 477)
+position = Vector2(2126, 477)
 
 [node name="Control" type="Control" parent="StaticBody2D/skeleton"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 41.0
+offset_bottom = 42.0
 
 [node name="Enemy_HealthBar" type="TextureProgressBar" parent="StaticBody2D/skeleton/Control" node_paths=PackedStringArray("enemy")]
 layout_mode = 0
@@ -1391,7 +1393,7 @@ position = Vector2(1, -45)
 shape = SubResource("CapsuleShape2D_wcr85")
 
 [node name="skeleton2" parent="StaticBody2D" instance=ExtResource("27_v3kby")]
-position = Vector2(2546, 473)
+position = Vector2(2629, 475)
 script = ExtResource("13_bf21q")
 
 [node name="Control" type="Control" parent="StaticBody2D/skeleton2"]

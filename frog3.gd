@@ -11,7 +11,7 @@ var attacked
 @onready var animation = get_node("CollisionShape2D/AnimatedSprite2D")
 
 func _process(delta):
-	attacked = Globals.frog1_is_attacked
+	attacked = Globals.frog3_is_attacked
 	if not attacked:
 		# Move the frog
 		var velocity = direction * speed * delta

@@ -78,6 +78,11 @@ var test = 10
 #=======
 #>>>>>>> 58ead0fd782866083d8dda00362f781baf85dfc6
 # Called when the node enters the scene tree for the first time.
+@export var frog1_is_attacked = false
+@export var frog2_is_attacked = false
+@export var frog3_is_attacked = false
+@export var frog4_is_attacked = false
+
 func _ready():
 	pass # Replace with function body.
 
@@ -91,6 +96,12 @@ func reset_variables():
 	collected = 0
 	currentShard = collected
 	currentHealth = maxHealth
+	
+	#Frog
+	frog1_is_attacked = false
+	frog2_is_attacked = false
+	frog3_is_attacked = false
+	frog4_is_attacked = false
 	
 	#Slime
 	slime1_currentHealth = slime1_maxHealth

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bf2w8os7ivmas"]
+[gd_scene load_steps=7 format=3 uid="uid://bf2w8os7ivmas"]
 
 [ext_resource type="Texture2D" uid="uid://bebet4yogvo5k" path="res://world_bground/back.png" id="1_gv5df"]
+[ext_resource type="Script" path="res://win.gd" id="1_sdlx6"]
 [ext_resource type="Texture2D" uid="uid://5x0g8jltxcd8" path="res://Assets/win.png" id="2_rjn6c"]
+[ext_resource type="Script" path="res://Main menu.gd" id="3_dv0oh"]
+[ext_resource type="Script" path="res://Button2.gd" id="4_7aimw"]
+[ext_resource type="AudioStream" uid="uid://dag20htoxl1r6" path="res://Music/collect/success.mp3" id="6_pk5i0"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_sdlx6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -33,6 +38,7 @@ offset_right = 643.0
 offset_bottom = 410.0
 text = "Main Menu
 "
+script = ExtResource("3_dv0oh")
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 0
@@ -42,3 +48,7 @@ offset_right = 643.0
 offset_bottom = 465.0
 text = "Quit
 "
+script = ExtResource("4_7aimw")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pk5i0")
